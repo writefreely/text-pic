@@ -57,8 +57,10 @@ func run() error {
 	// Content parameters
 	contentFontSize := 48.0
 	lineSpacing := 1.8
+	contentBottomMargin := 100.0
 	contentRightMargin := 50.0
 	contentTopMargin := 50.0
+	contentWidth := wf - contentRightMargin - contentRightMargin
 
 	// Create bold instance name
 	err := loadFont(dc, true, footerFontSize)
@@ -101,10 +103,18 @@ func run() error {
 		return err
 	}
 	s := "The rest of the travelers in our flying bus napped or stared listlessly at a shiny slab in their lap and the staring yellow orb morphed into a full circle out in the blue. As we banked to the right — a nod to its awakening — it seemed to rest in acknowledgement, hanging for a moment on the invisible horizon."
+	lines := dc.WordWrap(s, contentWidth)
+	linesStr := ""
+	for i, str := range lines {
+		linesStr += str
+		if i != len(lines)-1 {
+			linesStr += "\n"
+		}
+	}
+	_, contentTextHeight := dc.MeasureMultilineString(linesStr, lineSpacing)
 	x = contentRightMargin
-	y = contentTopMargin
-	maxWidth := float64(dc.Width()) - contentRightMargin - contentRightMargin
-	dc.DrawStringWrapped(s, x, y, 0, 0, maxWidth, lineSpacing, gg.AlignLeft)
+	y = contentTopMargin - contentBottomMargin + hf/2 - contentTextHeight/2
+	dc.DrawStringWrapped(s, x, y, 0, 0, contentWidth, lineSpacing, gg.AlignLeft)
 
 	err = dc.SavePNG("out.png")
 	if err != nil {
