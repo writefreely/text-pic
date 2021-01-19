@@ -33,7 +33,7 @@ func loadFont(dc *gg.Context, bold bool, points float64) error {
 	return nil
 }
 
-func Run() error {
+func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	w := 900
 	h := 900
 	wf := float64(w)
@@ -63,7 +63,7 @@ func Run() error {
 	if err != nil {
 		return err
 	}
-	instance := "write.as"
+	instance := opt.Instance
 	baseTextWidth, textHeight := dc.MeasureString(instance)
 
 	// Create user path
@@ -73,7 +73,7 @@ func Run() error {
 	}
 	dc.SetColor(color.Black)
 
-	userPath := "/matt"
+	userPath := "/" + opt.Username
 	userTextWidth, _ := dc.MeasureString(userPath)
 	// x = canvas halfway point - total text width halfway point
 	x = wf/2 - (baseTextWidth+userTextWidth)/2
@@ -98,7 +98,7 @@ func Run() error {
 	if err != nil {
 		return err
 	}
-	s := "The rest of the travelers in our flying bus napped or stared listlessly at a shiny slab in their lap and the staring yellow orb morphed into a full circle out in the blue. As we banked to the right — a nod to its awakening — it seemed to rest in acknowledgement, hanging for a moment on the invisible horizon."
+	s := opt.Content
 	lines := dc.WordWrap(s, contentWidth)
 	linesStr := ""
 	for i, str := range lines {
@@ -112,7 +112,7 @@ func Run() error {
 	y = contentTopMargin - contentBottomMargin + hf/2 - contentTextHeight/2
 	dc.DrawStringWrapped(s, x, y, 0, 0, contentWidth, lineSpacing, gg.AlignLeft)
 
-	err = dc.SavePNG("out.png")
+	err = dc.SavePNG(outputFilename)
 	if err != nil {
 		return fmt.Errorf("save png: %s", err)
 	}
