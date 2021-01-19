@@ -24,18 +24,12 @@ var (
 	outputFile = flag.String("o", "out.png", "Image output filename")
 	font       = flag.String("font", "serif", "Post font (options: \"serif\", \"sans\", \"mono\") - NOT IMPLEMENTED YET")
 	instance   = flag.String("i", "write.as", "WriteFreely instance hostname (e.g. pencil.writefree.ly)")
-	author     = flag.String("u", "", "WriteFreely author username")
+	author     = flag.String("u", "", "WriteFreely author username (for multi-user instances)")
 )
 
 func main() {
 	log.Info("Starting...")
 	flag.Parse()
-
-	if *author == "" {
-		log.Info("Aborting. -u flag is required")
-		flag.Usage()
-		os.Exit(1)
-	}
 
 	log.Info("Reading input...")
 	in, err := ioutil.ReadAll(os.Stdin)

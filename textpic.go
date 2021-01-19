@@ -73,7 +73,10 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	}
 	dc.SetColor(color.Black)
 
-	userPath := "/" + opt.Username
+	var userPath = ""
+	if opt.Username != "" {
+		userPath = "/" + opt.Username
+	}
 	userTextWidth, _ := dc.MeasureString(userPath)
 	// x = canvas halfway point - total text width halfway point
 	x = wf/2 - (baseTextWidth+userTextWidth)/2
