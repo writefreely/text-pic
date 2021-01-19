@@ -26,6 +26,13 @@ Usage of wfgraphic-cli:
 
 ## Examples
 
-![Sample using default fonts.](https://i.snap.as/NHrWle49.png)
-
-![Sample using "sans" font and a custom domain.](https://i.snap.as/8SI7lfyb.png)
+<table>
+<tr>
+<td>
+    <img src="https://i.snap.as/NHrWle49.png" alt="Sample using default fonts." />
+</td>
+<td>
+    <img src="https://i.snap.as/8SI7lfyb.png" alt="Sample using 'sans' font and a custom domain." />
+</td>
+</tr>
+</table>
