@@ -1,26 +1,12 @@
-package main
+package textpic
 
 import (
 	"fmt"
 	"image/color"
-	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/fogleman/gg"
-	"github.com/writeas/web-core/log"
 )
-
-func main() {
-	log.Info("Starting...")
-	start := time.Now()
-	err := run()
-	if err != nil {
-		log.Error("%s", err)
-		os.Exit(1)
-	}
-	log.Info("Completed in %s", time.Since(start))
-}
 
 func loadFont(dc *gg.Context, bold bool, points float64) error {
 	fontLoraBoldPath := filepath.Join("fonts", "Lora-Bold.ttf")
@@ -37,7 +23,7 @@ func loadFont(dc *gg.Context, bold bool, points float64) error {
 	return nil
 }
 
-func run() error {
+func Run() error {
 	w := 900
 	h := 900
 	wf := float64(w)
