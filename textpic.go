@@ -19,8 +19,8 @@ import (
 )
 
 func loadFont(dc *gg.Context, bold bool, points float64) error {
-	fontLoraBoldPath := filepath.Join("fonts", "Lora-Bold.ttf")
-	fontLoraPath := filepath.Join("fonts", "Lora-Regular.ttf")
+	fontLoraBoldPath := filepath.Join("fonts", "Lora", "Lora-Bold.ttf")
+	fontLoraPath := filepath.Join("fonts", "Lora", "Lora-Regular.ttf")
 	path := fontLoraPath
 	if bold {
 		path = fontLoraBoldPath
