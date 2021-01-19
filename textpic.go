@@ -18,17 +18,17 @@ import (
 	"github.com/fogleman/gg"
 )
 
-func loadFont(dc *gg.Context, bold bool, points float64) error {
-	fontLoraBoldPath := filepath.Join("fonts", "Lora", "Lora-Bold.ttf")
-	fontLoraPath := filepath.Join("fonts", "Lora", "Lora-Regular.ttf")
-	path := fontLoraPath
+func loadFont(dc *gg.Context, fontFace string, bold bool, points float64) error {
+	fontBoldPath := filepath.Join("fonts", fontFace, fontFace+"-Bold.ttf")
+	fontRegularPath := filepath.Join("fonts", fontFace, fontFace+"-Regular.ttf")
+	path := fontRegularPath
 	if bold {
-		path = fontLoraBoldPath
+		path = fontBoldPath
 	}
 
 	err := dc.LoadFontFace(path, points)
 	if err != nil {
-		return fmt.Errorf("load bold font: %s", err)
+		return fmt.Errorf("load font: %s", err)
 	}
 	return nil
 }
@@ -59,7 +59,7 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	contentWidth := wf - contentRightMargin - contentRightMargin
 
 	// Create bold instance name
-	err := loadFont(dc, true, footerFontSize)
+	err := loadFont(dc, "Lora", true, footerFontSize)
 	if err != nil {
 		return err
 	}
@@ -67,7 +67,7 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	baseTextWidth, textHeight := dc.MeasureString(instance)
 
 	// Create user path
-	err = loadFont(dc, false, footerFontSize)
+	err = loadFont(dc, "Lora", false, footerFontSize)
 	if err != nil {
 		return err
 	}
@@ -81,7 +81,7 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	// x = canvas halfway point - total text width halfway point
 	x = wf/2 - (baseTextWidth+userTextWidth)/2
 	y = hf - textHeight - footerMarginY
-	err = loadFont(dc, true, footerFontSize)
+	err = loadFont(dc, "Lora", true, footerFontSize)
 	if err != nil {
 		return err
 	}
@@ -90,14 +90,14 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	// x = original x coordinate + base text width
 	x += baseTextWidth
 	y = hf - textHeight - footerMarginY
-	err = loadFont(dc, false, footerFontSize)
+	err = loadFont(dc, "Lora", false, footerFontSize)
 	if err != nil {
 		return err
 	}
 	dc.DrawString(userPath, x, y)
 
 	// Draw the content
-	err = loadFont(dc, false, contentFontSize)
+	err = loadFont(dc, fonts[opt.UserFont], false, contentFontSize)
 	if err != nil {
 		return err
 	}

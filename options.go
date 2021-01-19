@@ -10,6 +10,14 @@
 
 package textpic
 
+var fonts = map[string]string{
+	"norm":  "Lora",
+	"serif": "Lora",
+	"sans":  "OpenSans",
+	"mono":  "Hack",
+	"wrap":  "Hack",
+}
+
 type ContentOptions struct {
 	// Author information
 	Instance string
@@ -19,8 +27,8 @@ type ContentOptions struct {
 	IsSubdomain bool // UNIMPLEMENTED
 
 	// Content
-	Font    string // UNIMPLEMENTED
-	Content string
+	UserFont string
+	Content  string
 }
 
 func NewContentOptions(instance, username string, isSubdomain bool, font, content string) *ContentOptions {
@@ -28,7 +36,7 @@ func NewContentOptions(instance, username string, isSubdomain bool, font, conten
 		Instance:    instance,
 		Username:    username,
 		IsSubdomain: isSubdomain,
-		Font:        font,
+		UserFont:    font,
 		Content:     content,
 	}
 	if opt.Instance == "" {
@@ -38,4 +46,9 @@ func NewContentOptions(instance, username string, isSubdomain bool, font, conten
 		opt.Content = "Hello, world!"
 	}
 	return opt
+}
+
+func IsValidFont(f string) bool {
+	_, valid := fonts[f]
+	return valid
 }

@@ -22,7 +22,7 @@ import (
 
 var (
 	outputFile = flag.String("o", "out.png", "Image output filename")
-	font       = flag.String("font", "serif", "Post font (options: \"serif\", \"sans\", \"mono\") - NOT IMPLEMENTED YET")
+	font       = flag.String("font", "serif", "Post font (options: \"serif\", \"sans\", \"mono\")")
 	instance   = flag.String("i", "write.as", "WriteFreely instance hostname (e.g. pencil.writefree.ly)")
 	author     = flag.String("u", "", "WriteFreely author username (for multi-user instances)")
 )
@@ -30,6 +30,12 @@ var (
 func main() {
 	log.Info("Starting...")
 	flag.Parse()
+
+	// Validate input
+	if !textpic.IsValidFont(*font) {
+		log.Info("Invalid font given. Options: \"serif\", \"sans\", \"mono\"")
+		os.Exit(1)
+	}
 
 	log.Info("Reading input...")
 	in, err := ioutil.ReadAll(os.Stdin)
