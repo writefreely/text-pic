@@ -100,17 +100,24 @@ func GenerateImage(opt *ContentOptions, outputFilename string) error {
 	}
 	s := opt.Content
 	lines := dc.WordWrap(s, contentWidth)
+
+	// Center-align text by default for short content
+	alignment := gg.AlignCenter
 	linesStr := ""
 	for i, str := range lines {
 		linesStr += str
 		if i != len(lines)-1 {
 			linesStr += "\n"
+			if alignment == gg.AlignCenter {
+				// Since content uses multiple lines, left-align it.
+				alignment = gg.AlignLeft
+			}
 		}
 	}
 	_, contentTextHeight := dc.MeasureMultilineString(linesStr, lineSpacing)
 	x = contentRightMargin
 	y = contentTopMargin - contentBottomMargin + hf/2 - contentTextHeight/2
-	dc.DrawStringWrapped(s, x, y, 0, 0, contentWidth, lineSpacing, gg.AlignLeft)
+	dc.DrawStringWrapped(s, x, y, 0, 0, contentWidth, lineSpacing, alignment)
 
 	err = dc.SavePNG(outputFilename)
 	if err != nil {
