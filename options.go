@@ -39,9 +39,6 @@ func NewContentOptions(instance, username string, isSubdomain bool, font, conten
 		UserFont:    font,
 		Content:     content,
 	}
-	if opt.Instance == "" {
-		opt.Instance = "write.as"
-	}
 	if opt.Content == "" {
 		opt.Content = "Hello, world!"
 	}
