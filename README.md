@@ -16,7 +16,7 @@ Then you can run `wfgraphic-cli` with the options below.
 Usage of wfgraphic-cli:
   -font string
         Post font (options: "serif", "sans", "mono") (default "serif")
-  -i string
+  -h string
         WriteFreely instance hostname (e.g. "pencil.writefree.ly")
   -o string
         Image output filename (default "out.png")
@@ -29,7 +29,7 @@ Usage of wfgraphic-cli:
 The actual content of the graphic is read from `stdin`, which you can either supply when prompted to, or pipe in, for example:
 
 ```
-cat quote.txt | ./wfgraphic-cli -i write.as -u blog
+cat quote.txt | ./wfgraphic-cli -h write.as -u blog
 ```
 
 ## Examples
