@@ -25,7 +25,7 @@ import (
 var (
 	outputFile = flag.String("o", "out.png", "Image output filename")
 	font       = flag.String("font", "serif", "Post font (options: \"serif\", \"sans\", \"mono\")")
-	instance   = flag.String("i", "write.as", "WriteFreely instance hostname (e.g. pencil.writefree.ly)")
+	instance   = flag.String("i", "write.as", "WriteFreely instance hostname (e.g. \"pencil.writefree.ly\")")
 	author     = flag.String("u", "", "WriteFreely author username (for multi-user instances)")
 	size       = flag.String("size", "1024", "Image size, either a single number for a square (e.g. \"900\") or a combined width and height (e.g. \"1080x1920\")")
 )
@@ -36,7 +36,7 @@ func main() {
 
 	// Validate input
 	if !textpic.IsValidFont(*font) {
-		log.Info("Invalid font given. Options: \"serif\", \"sans\", \"mono\"")
+		log.Info("Invalid --font given. Options: \"serif\", \"sans\", \"mono\"")
 		os.Exit(1)
 	}
 	// Parse image dimensions and validate
