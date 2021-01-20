@@ -31,7 +31,6 @@ var (
 )
 
 func main() {
-	log.Info("Starting...")
 	flag.Parse()
 
 	// Validate input
