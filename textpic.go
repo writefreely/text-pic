@@ -33,9 +33,7 @@ func loadFont(dc *gg.Context, fontFace string, bold bool, points float64) error 
 	return nil
 }
 
-func GenerateImage(opt *ContentOptions, outputFilename string) error {
-	w := 900
-	h := 900
+func GenerateImage(opt *ContentOptions, w, h int, outputFilename string) error {
 	wf := float64(w)
 	hf := float64(h)
 	dc := gg.NewContext(w, h)
