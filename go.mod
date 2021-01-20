@@ -1,4 +1,4 @@
-module github.com/writeas/text-pic
+module github.com/writefreely/text-pic
 
 go 1.13
 

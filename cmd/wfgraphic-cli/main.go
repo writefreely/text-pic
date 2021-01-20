@@ -18,8 +18,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/writeas/text-pic"
 	"github.com/writeas/web-core/log"
+	"github.com/writefreely/text-pic"
 )
 
 var (

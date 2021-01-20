@@ -7,7 +7,7 @@ This tool generates a social media-friendly graphic from some text. It's especia
 To run this, you'll need Go installed. With that, you can compile the project:
 
 ```
-go get github.com/writeas/text-pic/cmd/wfgraphic-cli
+go get github.com/writefreely/text-pic/cmd/wfgraphic-cli
 ```
 
 Then you can run `wfgraphic-cli` with the options below.
