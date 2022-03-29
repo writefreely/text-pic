@@ -35,7 +35,7 @@ func main() {
 
 	// Validate input
 	if *instance == "" {
-		log.Info("Aborting. Instance name (-i instance.tld) is required")
+		log.Info("Aborting. Instance name (-h instance.tld) is required")
 		flag.Usage()
 		os.Exit(1)
 	}
